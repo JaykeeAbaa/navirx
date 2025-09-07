@@ -32,12 +32,24 @@
             <i data-lucide="send" class="w-4 h-4"></i>
             <span class="hidden md:inline">Get in touch</span>
           </a>
-          <button class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#198E9B]">
-            <i data-lucide="menu" class="w-5 h-5"></i>
+          <button id="mobileMenuButton" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#198E9B]">
+            <i data-lucide="menu" class="w-5 h-5" id="iconMenu"></i>
+            <i data-lucide="x" class="w-5 h-5 hidden" id="iconClose"></i>
           </button>
         </div>
       </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden fixed top-16 left-0 right-0 z-40 border-b border-slate-200 bg-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-2">
+        <a href="#about" class="block text-[14px] font-medium text-slate-700 py-1">About</a>
+        <a href="#overview" class="block text-[14px] font-medium text-slate-700 py-1">Overview</a>
+        <a href="#services" class="block text-[14px] font-medium text-slate-700 py-1">Services</a>
+        <a href="#contact" class="block text-[14px] font-medium text-slate-700 py-1">Contact</a>
+        <a href="#blog" class="block text-[14px] font-medium text-slate-700 py-1">Resources</a>
+      </div>
+    </div>
 
     <!-- Hero -->
     <section class="relative overflow-hidden">
@@ -57,7 +69,7 @@
               Navigating Prescription Access,
               <span class="block text-[#198E9B]">Technology, and Innovation</span>
             </h1>
-            <p class="text-[16px] sm:text-[17px] leading-relaxed text-slate-700 max-w-2xl mx-auto">
+            <p class="text-[14px] sm:text-[17px] leading-relaxed text-slate-700 max-w-2xl mx-auto">
               Expert consulting for pharmacy, healthcare technology, and affordability solutions—driving market access and patient-centric innovation.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -71,18 +83,18 @@
               </a>
             </div>
             <div class="pt-4">
-              <div class="grid grid-cols-3 gap-6 text-[13px] text-slate-600 max-w-md mx-auto">
+              <div class="grid grid-cols-3 gap-8 sm:gap-12 text-[13px] text-slate-600 max-w-lg mx-auto">
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2">
-                  <i data-lucide="shield-check" class="w-5 h-5 text-[#198E9B]"></i>
-                  <span class="text-center sm:text-left whitespace-nowrap">25+ years healthcare</span>
+                  <i data-lucide="shield-check" class="w-6 h-6 text-[#198E9B] flex-shrink-0"></i>
+                  <span class="text-center sm:text-left sm:whitespace-nowrap">25+ years healthcare</span>
                 </div>
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2">
-                  <i data-lucide="cpu" class="w-5 h-5 text-[#198E9B]"></i>
-                  <span class="text-center sm:text-left whitespace-nowrap">Deep health tech</span>
+                  <i data-lucide="cpu" class="w-6 h-6 text-[#198E9B] flex-shrink-0"></i>
+                  <span class="text-center sm:text-left sm:whitespace-nowrap">Deep health tech</span>
                 </div>
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2">
-                  <i data-lucide="pill" class="w-5 h-5 text-[#198E9B]"></i>
-                  <span class="text-center sm:text-left whitespace-nowrap">Access &amp; affordability</span>
+                  <i data-lucide="pill" class="w-6 h-6 text-[#198E9B] flex-shrink-0"></i>
+                  <span class="text-center sm:text-left sm:whitespace-nowrap">Access &amp; affordability</span>
                 </div>
               </div>
             </div>
@@ -571,6 +583,27 @@
       lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
       // Year
       document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const iconMenu = document.getElementById('iconMenu');
+      const iconClose = document.getElementById('iconClose');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            iconMenu.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+          } else {
+            mobileMenu.classList.add('hidden');
+            iconMenu.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+          }
+        });
+      }
     </script>
   
 </body></html>
